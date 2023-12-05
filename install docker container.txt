@@ -1,0 +1,21 @@
+practical no 01
+Aim: Install and understand docker container, node.js,Java and hyperledger fabric, ethereum and perform necessary software installation on local machine/Create instance on cloud to run
+
+1. open ubantu>> open terminal 
+2. type su >> type password
+3. apt install docker.io 
+4.apt install docker-compose
+5.apt install curl
+6. check git version with commnad git --version 
+7. apt install nodejs
+8.apt install npm
+9.check python3 version
+10.type mkdir -p $HOME/go/src/github.com/
+11.cd $HOME/go/src/github.com/
+12.curl -sSL https://bit.ly/2ysbOFE | bash -s
+13.cd $wsl
+14. cd go/src/github.com/fabric-samples
+15.cd test-network
+16../network.sh down
+17../network.sh up
+19.apt install golang-go

@@ -1,0 +1,50 @@
+pragma solidity ^0.8.0;
+contract CarAuction{
+    address public owner;
+    uint public auctionEndTime;
+    uint public highestBid;
+    address public highestBidder;
+    bool public auctionEnded;
+
+struct Car{
+    string make;
+    string model;
+    uint year;
+    uint reservePrice;
+    bool isUpForauction;
+}
+mapping (uint=>Car) public car;
+uint public carCount;
+constructor(uint _biddingtime){
+owner =msg.sender;
+auctionEndTime= block.timestamp +_biddingtime;}
+function addCar(string memory _make,string memory _model,uint _year,uint _reserveprice) public {
+require(msg.sender==owner,"only owner can close the auction");
+require(!auctionEnded, "Auction has ended");
+uint carld = carCount++;
+car[carld] = Car(_make,_model,_year,_reserveprice,true);
+}
+function placeBid(uint carld) public payable {
+require(!auctionEnded, "Auctiom has ended");
+require(car[carld].isUpForauction, "This car is up for auction");
+require(msg.value> highestBid, "There is highest bid");
+if (highestBid>0){
+    payable (highestBidder).transfer(highestBid);}
+highestBidder = msg.sender;
+highestBid = msg.value;
+}
+function closeAuction() public {
+    require(msg.sender == owner,"only owner can close the auction");
+    require(block.timestamp>=auctionEndTime,"auction has not ended yet");
+    require(!auctionEnded,"auction has already ended");
+    auctionEnded = true;
+}
+function withdraw()public {
+    require(auctionEnded, "Auction is not over");
+    require(msg.sender!=highestBidder,"you cannot withdraw as highest");
+    uint amount =highestBid;
+    highestBid =0;
+    payable (msg.sender).transfer(amount);
+
+}
+}

@@ -1,0 +1,32 @@
+practical no 7
+global finance block chain 
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract FinancialContract {
+	address public owner;
+	mapping (address => uint) public etherBalances;
+	mapping (address => uint) public assetBalances;
+	constructor() { 
+		owner = msg.sender;
+	}
+	modifier onlyOwner() {
+		require(msg.sender == owner, "Only the owner can perform this operation."); _;
+}
+function transferFunds (address payable to, uint amount) public {
+	require(msg.sender != to, "You cannot send funds to yourself.");
+	require(address(this). balance >= amount, "Insufficient balance.");
+	to.transfer (amount);
+}
+function issueAsset (address recipient, uint amount) public onlyOwner {
+	assetBalances[recipient] += amount;
+}
+
+function transferAsset (address to, uint amount) public {
+	require (assetBalances[msg.sender] >= amount, "Insufficient assets.");
+	assetBalances[msg.sender] -= amount;
+	assetBalances [to] += amount;
+}
+receive() external payable {
+	etherBalances[msg.sender] += msg.value;
+}
+}

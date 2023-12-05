@@ -1,0 +1,12 @@
+open terminal and type su 
+git clone https://github.com/IBM/InteractingWithABlockchainNetwork.git
+cd InteractingWithABlockchainNetwork
+./build.sh
+docker ps
+docker logs fitcoin-ca
+
+open new terminal and type su 
+cd InteractingWithABlockchainNetwork
+ls
+cd testApplication/
+node index.js

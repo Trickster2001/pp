@@ -1,0 +1,30 @@
+contract Fitness{
+    struct Activity {
+    string activity;
+    uint points;
+    uint timestamp;
+}
+mapping (address => Activity[])Activities;
+event MyActivity(address user, string activity,uint points,uint timestamp);
+function regActivity(string memory _activity,uint _points) public {
+    require(_points > 0,"Points must");
+    Activities[msg.sender].push(Activity(_activity,_points,block.timestamp));
+    emit MyActivity(msg.sender, _activity, _points,block.timestamp);
+}
+function getCount()public view returns(uint){
+    return Activities[msg.sender].length;
+}
+function getActivity(uint _index)public view returns(string memory activity,uint points,uint timestamp){
+require(_index < Activities[msg.sender].length);
+Activity memory act = Activities[msg.sender][_index];
+return(act.activity, act.points, act.timestamp);
+}
+function getpoint()public view returns(uint){
+    uint totalpoints = 0;
+    for(uint i = 0; i < Activities[msg.sender].length; i++){
+        totalpoints +=Activities[msg.sender][i].points;
+}
+return totalpoints;
+
+}
+}

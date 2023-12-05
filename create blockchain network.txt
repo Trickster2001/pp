@@ -1,0 +1,30 @@
+practical no 2
+Create and deploy a block chain network using hyperlegder Fabric SDK for java  
+1. open ubantu and open terminal 
+2. type curl --version
+3. type docker --version
+4. type docker-compose --version
+5. python3 --version
+6. go --version
+7. node -v
+8. npm -version 
+9. git --version 
+10. git config --global core.autocrlf false
+11. git config --global core.longpaths true
+12. mkdir MyHyperLedger
+13. cd MyHyperLedger
+14. curl -sSL http://bit.ly/2ysboOFE | bash -s 1.4.4
+15. su and enter password
+16. ls
+17. cd fabric-samples/
+18. cd first-network/
+19.cd
+20.back to root@omkar-virtualBox:~# mkdir MyHyperLedger
+21. cd MyHyperLedger
+22. curl url -sSL http://bit.ly/2ysbOFE | bash -s 1.4.4
+23. go to fabric samples/first-network using cd command
+24.ls
+25. ./byfn.sh generate
+26. type y
+27. ./byfn.sh up -l >> enter >> type y 
+28. .byfn.sh down >> enter >> type y
